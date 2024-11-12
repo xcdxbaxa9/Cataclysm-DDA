@@ -384,6 +384,12 @@ STRIP = $(CROSS)strip
 RC  = $(CROSS)windres
 AR  = $(CROSS)ar
 
+ifeq ($(NATIVE), osx)
+    ifeq ($(CLANG), 1)
+        AR = llvm-ar
+    endif
+endif
+
 LDFLAGS += $(PROFILE)
 
 ifneq ($(SANITIZE),)
