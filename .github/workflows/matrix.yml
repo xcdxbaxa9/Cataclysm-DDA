@@ -3,7 +3,7 @@ name: General build matrix
 on:
   push:
     branches:
-    - master
+    - vehicle-idle-perf
   pull_request:
     branches:
     - master
