@@ -3,7 +3,7 @@ name: Cataclysm Windows build
 on:
   push:
     branches:
-    - master
+    - visual_studio
     paths-ignore:
     - 'android/**'
     - 'build-data/osx/**'
@@ -137,6 +137,12 @@ jobs:
     - name: Build
       run: |
           msbuild -m -p:Configuration=Release -p:Platform=x64 "-target:Cataclysm-vcpkg-static;Cataclysm-test-vcpkg-static;JsonFormatter-vcpkg-static" msvc-full-features/Cataclysm-vcpkg-static.sln
+
+    - name: Upload build
+      uses: actions/upload-artifact@v4
+      with:
+        path: |
+          objwin
 
     - name: Post-build ccache manipulation
       if: ${{ !failure() }}
